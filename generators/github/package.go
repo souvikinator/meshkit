@@ -2,6 +2,7 @@ package github
 
 import (
 	"bytes"
+	"fmt"
 	"os"
 
 	"github.com/layer5io/meshkit/utils"
@@ -51,6 +52,7 @@ func (gp GitHubPackage) GenerateComponents() ([]_component.ComponentDefinition, 
 
 			comps, err := component.GenerateFromOpenAPI(string(crd), gp)
 			if err != nil {
+				fmt.Printf("@@@ %s\n", string(crd))
 				errs = append(errs, component.ErrGetSchema(err))
 				continue
 			}
